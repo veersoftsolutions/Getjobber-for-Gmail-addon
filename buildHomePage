@@ -1,0 +1,25 @@
+function buildHomepage(e) {
+  var cardBuilder= CardService.newCardBuilder()
+    .setHeader(CardService.newCardHeader().setTitle("GetJobber Dashboard"))
+    .addSection(CardService.newCardSection().addWidget(
+    CardService.newTextParagraph().setText("Welcome to the GetJobber Add-on Homepage!")
+    ))
+    var service = getOAuthService();
+  if (!service.hasAccess() || isStaleView()) {
+    var authSection = CardService.newCardSection();
+    var loginAction = CardService.newAction().setFunctionName("checkAuth");
+    var loginButton = CardService.newTextButton()
+      .setText('Login to Jobber')
+      .setOnClickAction(loginAction);
+    authSection.addWidget(CardService.newButtonSet().addButton(loginButton));
+    cardBuilder.addSection(authSection);
+  } else {
+
+        cardBuilder.addSection(CardService.newCardSection().addWidget(
+        CardService.newTextParagraph().setText("You are successfully connected to GetJobber. Open a message and start creating new clients directly from your inbox. ")))
+      }
+  if (e && e.parameters && e.parameters.state) {
+    Logger.log("Homepage state param: " + e.parameters.state);
+  }
+  return cardBuilder.build();
+}
