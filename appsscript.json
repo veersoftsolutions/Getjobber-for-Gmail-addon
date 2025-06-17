@@ -1,0 +1,65 @@
+{
+  "timeZone": "America/New_York",
+  "dependencies": {
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "Gmail",
+        "serviceId": "gmail",
+        "version": "v1"
+      }
+    ],
+    "libraries": [
+      {
+        "userSymbol": "OAuth2",
+        "libraryId": "1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMun4iDF",
+        "version": "43"
+      }
+    ]
+  },
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "ANYONE_ANONYMOUS"
+  },
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/script.locale",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/gmail.addons.current.message.metadata",
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/script.scriptapp"
+  ],
+  "urlFetchWhitelist": [
+    "https://api.getjobber.com/",
+    "https://generativelanguage.googleapis.com/"
+  ],
+  "runtimeVersion": "V8",
+  "addOns": {
+    "common": {
+      "name": "GetJobber for Gmail",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Cloud_icon_128x128px.svg/2048px-Cloud_icon_128x128px.svg.png",
+      "layoutProperties": {
+        "primaryColor": "#232B2F",
+        "secondaryColor": "#45C153"
+      },
+      "useLocaleFromApp": true,
+      "openLinkUrlPrefixes": [
+        "https://api.getjobber.com",
+        "https://script.google.com"
+      ]
+    },
+    "gmail": {
+      "name": "GetJobber for Gmail",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Cloud_icon_128x128px.svg/2048px-Cloud_icon_128x128px.svg.png",
+      "contextualTriggers": [
+        {
+          "unconditional": {},
+          "onTriggerFunction": "buildAddOn"
+        }
+      ],
+      "homepageTrigger": {
+        "runFunction": "buildHomepage"
+      }
+    }
+  }
+}
